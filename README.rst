@@ -7,9 +7,6 @@
 .. image:: https://readthedocs.com/projects/d-wave-systems-dwave-neal/badge/?version=latest
     :target: https://docs.ocean.dwavesys.com/projects/neal/en/latest/?badge=latest
 
-.. image:: https://ci.appveyor.com/api/projects/status/ihbwp21xu06h9upc/branch/master?svg=true
-    :target: https://ci.appveyor.com/project/dwave-adtt/dwave-neal
-
 .. image:: https://circleci.com/gh/dwavesystems/dwave-neal.svg?style=svg
     :target: https://circleci.com/gh/dwavesystems/dwave-neal
 
@@ -73,7 +70,8 @@ License
 
 Released under the Apache License 2.0. See LICENSE file.
 
-Contribution
-------------
+Contributing
+============
 
-See CONTRIBUTING.rst file.
+Ocean's `contributing guide <https://docs.ocean.dwavesys.com/en/stable/contributing.html>`_
+has guidelines for contributing to Ocean packages.
