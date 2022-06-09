@@ -408,7 +408,7 @@ def _default_ising_beta_range(h, J,
     energy gap, such that for the final sweeps states are highly unlikely to excite away from 
     a global (or local) minimum.
     """
-    if not (max_single_qubit_excitation_rate>0 and max_single_qubit_excitation_rate<1):
+    if not 0 < max_single_qubit_excitation_rate < 1:
         raise ValueError('Targeted single qubit excitations rates must be in range (0,1)')
     
     
@@ -416,7 +416,7 @@ def _default_ising_beta_range(h, J,
     # experienced per spin as function of neighbors: bias = h_i + sum_j Jij s_j:
     sum_abs_bias_dict = defaultdict(int, {k: abs(v) for k, v in h.items()})
     if sum_abs_bias_dict:
-        min_abs_bias_dict = {key: sum_abs_bias_dict[key] for key in sum_abs_bias_dict if sum_abs_bias_dict[key]!=0}
+        min_abs_bias_dict = {k: v for k, v in sum_abs_bias_dict.items() if v != 0}
     else:
         min_abs_bias_dict = {}
     #This loop is slow, but is not a bottleneck for practical implementations of simulated annealing:
@@ -453,10 +453,7 @@ def _default_ising_beta_range(h, J,
     # This is solved as hot_beta = log(2)/max_delta_energy, max_delta energy is twice the
     # effective field, we take a worst case of the effective field to be conservative.
     # Max delta energy occurs when all biases are aligned, and contribute without frustration:
-    if sum_abs_bias_dict:
-        max_effective_field = max(sum_abs_bias_dict.values())
-    else:
-        max_effective_field = 0
+    max_effective_field = max(sum_abs_bias_dict.values(), default=0)
     
     if max_effective_field == 0:
         hot_beta = 1
